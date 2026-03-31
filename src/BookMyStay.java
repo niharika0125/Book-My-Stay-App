@@ -1,17 +1,20 @@
+import java.util.HashMap;
 
 public class BookMyStay{
+
     public static void main(String[] args) {
 
-        // Display welcome message
-        System.out.println("====================================");
-        System.out.println("   Welcome to Book My Stay App");
-        System.out.println("   Hotel Booking System v1.0");
-        System.out.println("====================================");
+        System.out.println("Welcome to Book My Stay App");
 
-        // Inform user that application has started successfully
-        System.out.println("Application started successfully!");
+        // Room types with static availability
+        HashMap<String, Integer> rooms = new HashMap<>();
+        rooms.put("Single", 5);
+        rooms.put("Double", 3);
+        rooms.put("Suite", 2);
 
-        // End of program
-        System.out.println("Thank you for using the system.");
+        System.out.println("\nAvailable Rooms:");
+        for (String type : rooms.keySet()) {
+            System.out.println(type + " Rooms: " + rooms.get(type));
+        }
     }
 }
