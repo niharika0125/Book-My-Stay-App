@@ -35,11 +35,17 @@ public class Booking {
         }
     }
 
-    public void cancelBooking() {
-        isCancelled = true;
-        int refund = totalCost / 2; // 50% refund
-        System.out.println("\nBooking Cancelled ❌");
-        System.out.println("Refund Amount: ₹" + refund);
+    public void cancelBooking(RoomInventory inventory) {
+        if (!isCancelled) {
+            isCancelled = true;
+
+            inventory.releaseRoom(roomType); // give room back
+
+            int refund = totalCost / 2;
+
+            System.out.println("\nBooking Cancelled ❌");
+            System.out.println("Refund Amount: ₹" + refund);
+        }
     }
 
     public void displayBooking() {

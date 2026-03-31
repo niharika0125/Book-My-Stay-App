@@ -37,7 +37,7 @@ public class BookMyStay {
             String cancel = scanner.nextLine();
 
             if (cancel.equalsIgnoreCase("yes")) {
-                booking.cancelBooking();
+                booking.cancelBooking(inventory);
             }
 
         } else {
