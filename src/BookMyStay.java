@@ -1,4 +1,6 @@
-public class BookMyStay{
+import java.util.Scanner;
+
+public class BookMyStay {
 
     public static void main(String[] args) {
 
@@ -6,5 +8,18 @@ public class BookMyStay{
 
         RoomInventory inventory = new RoomInventory();
         inventory.displayRooms();
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("\nEnter room type to check availability: ");
+        String type = scanner.nextLine();
+
+        if (inventory.isAvailable(type)) {
+            System.out.println("Room is Available ✅");
+        } else {
+            System.out.println("Room is NOT Available ❌");
+        }
+
+        scanner.close();
     }
 }
