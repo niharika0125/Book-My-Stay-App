@@ -1,5 +1,5 @@
 
-public class UseCase1HotelBookingApp {
+public class BookMyStay{
     public static void main(String[] args) {
 
         // Display welcome message
