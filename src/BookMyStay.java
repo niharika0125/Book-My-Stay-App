@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BookMyStay {
+class BookMyStay{
 
     public static void main(String[] args) {
 
@@ -11,14 +11,17 @@ public class BookMyStay {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("\nEnter room type to check availability: ");
+        System.out.print("\nEnter room type to book: ");
         String type = scanner.nextLine();
 
-        if (inventory.isAvailable(type)) {
-            System.out.println("Room is Available ✅");
+        if (inventory.bookRoom(type)) {
+            System.out.println("Booking Successful ✅");
         } else {
-            System.out.println("Room is NOT Available ❌");
+            System.out.println("Booking Failed ❌ (No rooms available)");
         }
+
+        System.out.println("\nUpdated Availability:");
+        inventory.displayRooms();
 
         scanner.close();
     }
