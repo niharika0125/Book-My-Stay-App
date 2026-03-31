@@ -21,4 +21,8 @@ public class RoomInventory {
     public int getAvailableRooms(String type) {
         return rooms.getOrDefault(type, 0);
     }
+
+    public boolean isAvailable(String type) {
+        return rooms.getOrDefault(type, 0) > 0;
+    }
 }
