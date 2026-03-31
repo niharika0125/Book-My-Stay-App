@@ -7,6 +7,7 @@ public class Booking {
     private String roomType;
     private ArrayList<String> services;
     private int totalCost;
+    private boolean isCancelled = false;
 
     public Booking(String roomType) {
         this.bookingId = counter++;
@@ -17,35 +18,36 @@ public class Booking {
 
     private int calculateBasePrice(String type) {
         switch (type) {
-            case "Single":
-                return 1000;
-            case "Double":
-                return 2000;
-            case "Suite":
-                return 3000;
-            default:
-                return 0;
+            case "Single": return 1000;
+            case "Double": return 2000;
+            case "Suite": return 3000;
+            default: return 0;
         }
     }
 
     public void addService(String service) {
         services.add(service);
 
-        // Add cost for services
         switch (service) {
-            case "WiFi":
-                totalCost += 200;
-                break;
-            case "Breakfast":
-                totalCost += 300;
-                break;
-            case "Parking":
-                totalCost += 150;
-                break;
+            case "WiFi": totalCost += 200; break;
+            case "Breakfast": totalCost += 300; break;
+            case "Parking": totalCost += 150; break;
         }
     }
 
+    public void cancelBooking() {
+        isCancelled = true;
+        int refund = totalCost / 2; // 50% refund
+        System.out.println("\nBooking Cancelled ❌");
+        System.out.println("Refund Amount: ₹" + refund);
+    }
+
     public void displayBooking() {
+        if (isCancelled) {
+            System.out.println("\nBooking already cancelled ❌");
+            return;
+        }
+
         System.out.println("\nBooking Confirmed ✅");
         System.out.println("Booking ID: " + bookingId);
         System.out.println("Room Type: " + roomType);

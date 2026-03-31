@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class BookMyStay{
+public class BookMyStay {
 
     public static void main(String[] args) {
 
@@ -18,33 +18,31 @@ public class BookMyStay{
 
             Booking booking = new Booking(type);
 
-            // Add-on services
             System.out.println("\nSelect Add-On Services:");
             System.out.println("1. WiFi\n2. Breakfast\n3. Parking\n4. No Services");
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    booking.addService("WiFi");
-                    break;
-                case 2:
-                    booking.addService("Breakfast");
-                    break;
-                case 3:
-                    booking.addService("Parking");
-                    break;
-                default:
-                    break;
+                case 1: booking.addService("WiFi"); break;
+                case 2: booking.addService("Breakfast"); break;
+                case 3: booking.addService("Parking"); break;
+                default: break;
             }
 
             booking.displayBooking();
 
+            // Cancellation option
+            System.out.print("\nDo you want to cancel booking? (yes/no): ");
+            scanner.nextLine(); // clear buffer
+            String cancel = scanner.nextLine();
+
+            if (cancel.equalsIgnoreCase("yes")) {
+                booking.cancelBooking();
+            }
+
         } else {
             System.out.println("Booking Failed ❌ (No rooms available)");
         }
-
-        System.out.println("\nUpdated Availability:");
-        inventory.displayRooms();
 
         scanner.close();
     }
