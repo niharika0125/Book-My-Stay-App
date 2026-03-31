@@ -39,7 +39,8 @@ public class Booking {
         if (!isCancelled) {
             isCancelled = true;
 
-            inventory.releaseRoom(roomType); // give room back
+            // Release room back to inventory
+            inventory.releaseRoom(roomType);
 
             int refund = totalCost / 2;
 
@@ -68,5 +69,18 @@ public class Booking {
         }
 
         System.out.println("Total Cost: ₹" + totalCost);
+    }
+
+    // 🔹 Getters for reporting
+    public int getBookingId() {
+        return bookingId;
+    }
+
+    public String getRoomType() {
+        return roomType;
+    }
+
+    public int getTotalCost() {
+        return totalCost;
     }
 }

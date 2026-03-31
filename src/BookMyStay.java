@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class BookMyStay {
 
@@ -11,7 +11,9 @@ public class BookMyStay {
 
         Scanner scanner = new Scanner(System.in);
 
-        // Booking
+        // Store all bookings
+        ArrayList<Booking> allBookings = new ArrayList<>();
+
         System.out.print("\nEnter room type to book: ");
         String type = scanner.nextLine();
 
@@ -25,24 +27,18 @@ public class BookMyStay {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
-                    booking.addService("WiFi");
-                    break;
-                case 2:
-                    booking.addService("Breakfast");
-                    break;
-                case 3:
-                    booking.addService("Parking");
-                    break;
-                default:
-                    break;
+                case 1: booking.addService("WiFi"); break;
+                case 2: booking.addService("Breakfast"); break;
+                case 3: booking.addService("Parking"); break;
+                default: break;
             }
 
             booking.displayBooking();
+            allBookings.add(booking);
 
             // Cancellation option
             System.out.print("\nDo you want to cancel booking? (yes/no): ");
-            scanner.nextLine(); // clear buffer
+            scanner.nextLine();
             String cancel = scanner.nextLine();
 
             if (cancel.equalsIgnoreCase("yes")) {
@@ -51,6 +47,20 @@ public class BookMyStay {
 
         } else {
             System.out.println("No rooms available. You are added to waitlist.");
+        }
+
+        // 📊 REPORT SECTION
+        System.out.println("\n===== BOOKING SUMMARY =====");
+
+        if (allBookings.isEmpty()) {
+            System.out.println("No bookings made.");
+        } else {
+            for (Booking b : allBookings) {
+                System.out.println("Booking ID: " + b.getBookingId());
+                System.out.println("Room Type: " + b.getRoomType());
+                System.out.println("Total Cost: ₹" + b.getTotalCost());
+                System.out.println("------------------------");
+            }
         }
 
         scanner.close();
