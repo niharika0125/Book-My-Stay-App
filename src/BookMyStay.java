@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class BookMyStay{
+public class BookMyStay {
 
     public static void main(String[] args) {
 
@@ -15,7 +15,11 @@ class BookMyStay{
         String type = scanner.nextLine();
 
         if (inventory.bookRoom(type)) {
-            System.out.println("Booking Successful ✅");
+
+            // Create booking
+            Booking booking = new Booking(type);
+            booking.displayBooking();
+
         } else {
             System.out.println("Booking Failed ❌ (No rooms available)");
         }
