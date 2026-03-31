@@ -18,11 +18,7 @@ public class RoomInventory {
         }
     }
 
-    public boolean isAvailable(String type) {
-        return rooms.getOrDefault(type, 0) > 0;
-    }
-
-    public boolean bookRoom(String type) {
+    public synchronized boolean bookRoom(String type) {
         int available = rooms.getOrDefault(type, 0);
 
         if (available > 0) {
@@ -30,5 +26,10 @@ public class RoomInventory {
             return true;
         }
         return false;
+    }
+
+    public synchronized void releaseRoom(String type) {
+        int available = rooms.getOrDefault(type, 0);
+        rooms.put(type, available + 1);
     }
 }
