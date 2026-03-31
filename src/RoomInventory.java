@@ -18,11 +18,17 @@ public class RoomInventory {
         }
     }
 
-    public int getAvailableRooms(String type) {
-        return rooms.getOrDefault(type, 0);
-    }
-
     public boolean isAvailable(String type) {
         return rooms.getOrDefault(type, 0) > 0;
+    }
+
+    public boolean bookRoom(String type) {
+        int available = rooms.getOrDefault(type, 0);
+
+        if (available > 0) {
+            rooms.put(type, available - 1);
+            return true;
+        }
+        return false;
     }
 }
